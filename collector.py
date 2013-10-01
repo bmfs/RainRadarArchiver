@@ -18,7 +18,7 @@ def getLastImage():
 
 	radar_time = "%s%s" % (hour, minutes)
 
-	image_path = os.path.join(os.getcwd(), 'archive', str(last_modified.tm_year), month, day, "%s.gif" % radar_time)
+	image_path = os.path.join(os.path.dirname(__file__), 'archive', str(last_modified.tm_year), month, day, "%s.gif" % radar_time)
 
 	if (checkIfExists(image_path)):
 		pass
@@ -35,16 +35,14 @@ def getLastImage():
 		#download file
 
 def createDirectory(year, month, day):
-	year_path = os.path.join(os.getcwd(), 'archive', year)
-	month_path = os.path.join(os.getcwd(), 'archive', year, month)
-	day_path = os.path.join(os.getcwd(), 'archive', year, month, day)
+	day_path = os.path.join(os.path.dirname(__file__), 'archive', year, month, day)
 	try:
 		if (not os.path.isdir(day_path)):
 			os.makedirs(day_path) 
 	except IOError,e:
 		print e
 	else:
-		print "Successful"
+		print "Successfully created directory"
 
 def checkIfExists(path):
 	try:
